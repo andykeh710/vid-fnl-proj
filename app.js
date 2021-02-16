@@ -13,7 +13,7 @@ const flash = require('connect-flash');
 // const User = require('./models/users');
 // const searchRouter = require('./routes/search');
 var indexRouter = require('./routes/user-home');
-// var createCubeRouter = require('./routes/create');
+var createRouter = require('./routes/create');
 // var attachAccessoryRouter = require('./routes/attach');
 // var detailsRouter = require('./routes/details');
 // var aboutRouter = require('./routes/about')
@@ -35,8 +35,10 @@ require('dotenv').config()
 
 // View Engine Setup
 app.set('views', path.join(__dirname, 'views')); // setting folder for public files
-app.set('view engine', 'hbs'); // setting view engine to hbs, engine compiles views and data into HTML
-// hbs.registerPartials('./views/partials');
+ // setting view engine to hbs, engine compiles views and data into HTML
+// app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'hbs');
+hbs.registerPartials('./views/partials');
 
 hbs.registerHelper('isEqual', function (expectedValue, value) {
   return value === expectedValue;
@@ -61,7 +63,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(flash());
 app.use('/', indexRouter); // Router for home page 
 // app.use('/search', searchRouter);
-// app.use('/create', createCubeRouter);
+app.use('/create', createRouter);
 // app.use('/accessory/attach', attachAccessoryRouter);
 // app.use('/details', detailsRouter);
 // app.use('/about', aboutRouter);

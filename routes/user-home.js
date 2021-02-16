@@ -18,20 +18,20 @@ res.render('user-home');
 
 
 // /// LOGION
-// router.get('/login', function(req, res) {
-//   res.render('login', {title: 'frog-in page', loggedUser: req.user});   ///message: req.flash('error')
-// });
+router.get('/login', function(req, res) {
+  res.render('login');   ///, {title: 'frog-in page', loggedUser: req.user}
+});
 
 // router.post('/login', passport.authenticate('local'), function(req, res) {  // , { failureRedirect: '/login', failureFlash: true }
 //     res.redirect('/');
 //   });
 
-//   router.get('/register', function(req, res, next) {
-//     console.log('register page');
-//     res.render('register', { title: '--Register--' });
+  router.get('/register', function(req, res, next) {
+    console.log('register page');
+    res.render('register', { title: '--Register--' });
     
     
-// });
+});
 // ///REGISTER 
 // router.post('/register', function(req, res, next) {
 //   // console.log("RES ------------------------------------------ get routre", res)
