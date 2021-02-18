@@ -8,9 +8,10 @@ const hbs = require('hbs');
 
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
+
+const User = require('./models/users');
 const flash = require('connect-flash');
 var session = require('express-session');
-const User = require('./models/users');
 // const searchRouter = require('./routes/search');
 var indexRouter = require('./routes/user-home');
 var createRouter = require('./routes/create');
@@ -71,16 +72,16 @@ app.use('/create', createRouter);
 // app.use('/cookie', cookieRouter);
 
 // use static authenticate method of model in LocalStrategy
-//passport.use(new LocalStrategy(User.authenticate()));
+passport.use(new LocalStrategy(User.authenticate()));
 // use static serialize and deserialize of model for passport session support
-// passport.serializeUser(User.serializeUser());
-// passport.deserializeUser(User.deserializeUser());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Routes
-// app.use(function (req, res, next) {
-//   res.locals.login = req.isAuthenticated();
-//   next();
-// });
+app.use(function (req, res, next) {
+  res.locals.login = req.isAuthenticated();
+  next();
+});
 
 app.use(function(req, res, next) {
   next(createError(404));
