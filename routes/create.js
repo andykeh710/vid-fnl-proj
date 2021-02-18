@@ -37,22 +37,22 @@ router.post('/', function(req, res, next) {
 });
 router.get('/course', function(req, res, next){
     console.log("FROG TIME")
-    res.render('create', {title: 'Create Course'});
+    res.render('create', {title: 'Create Course', loggedUser: req.user});
 });
 
-// // router.get('/accessory', function(req, res, next) {
-// //  //console.log('Create accessory');
-// //   res.render('createAccessory', { title: 'Add Accessory', loggedUser: req.user})
-// // });
+// router.get('/accessory', function(req, res, next) {
+//  //console.log('Create accessory');
+//   res.render('createAccessory', { title: 'Add Accessory', loggedUser: req.user})
+// });
 
 router.post('/course', function(req, res, next) {
   //console.log("the accessory form is ", req.body)
-  const newAcc = new Accessory({
-    title: req.body.name,
+  const newCourse = new Course({
+    title: req.body.title,
     description: req.body.description,
     imageUrl: req.body.imageUrl
   });
-  newAcc.save()
+  newCourse.save()
     .then((res) => { console.log('the new accessory is ', res)})
     res.redirect('/');
 })
