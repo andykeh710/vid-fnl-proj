@@ -8,11 +8,30 @@
                     <input type="submit" class="btn btn-info" value="Search">
                 </form>
 
-
+            
             <div class="container mt-3">
+                
                 <div class="row ">
+                    
                     <div class="card-deck d-flex justify-content-center">
+                         {{#each course}}
                         <div class="card mb-4">
+                           
+                            <img class="card-img-top"
+                                src="{{imageUrl}}"
+                                alt="Card image cap" width="400">
+                            <div class="card-body">
+                                <h4 class="card-title">{{title}}</h4>
+                            </div>
+                            <div class="card-footer">
+                                <a href=""><button type="button" class="btn btn-info" href="/details/"{{_id}}>Details</button></a>
+                                <small class="float-right">Date...</small>
+                            </div>
+                            
+                        </div>  
+{{else}}
+                            
+                                            {{!-- <div class="card mb-4">
                             <img class="card-img-top"
                                 src="https://blog.cyberpanel.net/wp-content/uploads/2019/03/express-js-cyberpanel.jpeg"
                                 alt="Card image cap" width="400">
@@ -23,9 +42,9 @@
                                 <a href=""><button type="button" class="btn btn-info">Details</button></a>
                                 <small class="float-right">Date...</small>
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="card mb-4">
+                        {{!-- <div class="card mb-4">
                             <img class="card-img-top"
                                 src="https://colorlib.com/wp/wp-content/uploads/sites/2/angular-logo.png"
                                 alt="Card image cap" width="400">
@@ -49,8 +68,9 @@
                                 <a href=""><button type="button" class="btn btn-info">Details</button></a>
                                 <small class="float-right">Date...</small>
                             </div>
-                        </div>
-                    </div>
+                        </div> --}}
+                                            
                 </div>
             </div>
             <h3 class="text-center">No courses...</h3>
+            {{/each}}
