@@ -16,7 +16,7 @@ var session = require('express-session');
 var indexRouter = require('./routes/user-home');
 var createRouter = require('./routes/create');
 // var attachAccessoryRouter = require('./routes/attach');
-// var detailsRouter = require('./routes/details');
+var detailsRouter = require('./routes/course-details');
 // var aboutRouter = require('./routes/about')
 // const editRouter = require('./routes/edit');
 // const cookieRouter = require('./routes/cookie');
@@ -66,7 +66,7 @@ app.use('/', indexRouter); // Router for home page
 // app.use('/search', searchRouter);
 app.use('/create', createRouter);
 // app.use('/accessory/attach', attachAccessoryRouter);
-// app.use('/details', detailsRouter);
+app.use('/course-details', detailsRouter);
 // app.use('/about', aboutRouter);
 // app.use('/edit', editRouter);
 // app.use('/cookie', cookieRouter);

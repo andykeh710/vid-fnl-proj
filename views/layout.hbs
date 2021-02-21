@@ -12,8 +12,14 @@
 <body>
     <div class="container">
         {{> header}}
-
-        <main>{{{body}}}</main>
+        <main>
+        {{!-- {{#if loggedInUser}}
+            {{user-home}}
+        {{else}}
+            {{guest-home}}
+        {{/if}} --}}
+        {{{body}}}
+        </main>
 
     </div>
     {{>footer}}

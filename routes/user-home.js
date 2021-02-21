@@ -22,30 +22,32 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res) {  // , { failureRedirect: '/login', failureFlash: true }
-    console.log("FROGGED INTO THE MATRIX")
+    //console.log("FROGGED INTO THE MATRIX")
     res.redirect('/');
   });
 
-  router.get('/register', function(req, res, next) {
-    console.log('register page');
-    res.render('register', { title: '--Register--' });
-    
-    
-});
+
 // ///REGISTER 
+  router.get('/register', function(req, res, next) {
+    //console.log('register page');
+    res.render('register', { title: '--Register--' });
+  });
+
 router.post('/register', function(req, res, next) {
-//   console.log("RES ------------------------------------------ get routre", res)
-//   console.log('registering user');
     User.register(new User({username: req.body.username}), req.body.password, function(err) {
     if (err) {
         console.log('error while user register!', err);
         return next(err);
     }
-
     console.log('user registered!');
-
     res.redirect('/');
     });
+});
+
+
+router.get('/logout', function(req, res) {
+  req.logout();
+  res.redirect('/');
 });
 
 module.exports = router;
