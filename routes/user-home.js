@@ -8,7 +8,7 @@ const User = require('../models/users');
 router.get('/', function(req, res, next) {
   Course.find()
     .then((response) => {
-      console.log('all the courses are ', response)
+      //console.log('all the courses are ', response)
       res.render('user-home', {title: 'Frogs', course: response, loggedUser: req.user});    //, {title: 'Frogs', cube: response, loggedUser: req.user}
     })
     .catch((err) => console.log(err));

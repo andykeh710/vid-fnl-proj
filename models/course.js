@@ -7,7 +7,7 @@ const courseSchema = new Schema({
   description: String,
   imageUrl: String,
   isPublic: false,
-  createdAt: String,
+  startTime: Date,
   users:[]  //{ type: mongoose.Schema.Types.ObjectId, ref: 'Cube' }
 
 })

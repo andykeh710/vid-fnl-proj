@@ -13,9 +13,11 @@
                     <div class="col-md-4 text-center">
                         <h3 class="my-3">{{course.title}}</h3>
                         <p>{{course.description}}</p>
-
-                        <a class="btn btn-danger" href="/">Delete</a>
+                        <form action='/delete/{{course._id}}' method="POST">
+                        <a class="btn btn-danger" href="/" type="submit" value="Delete">Delete</a>
+                        </form>
                         <a class="btn btn-warning" href="/">Edit</a>
+
                         <span class="enrolled-span">You are already enrolled</span>
                         <a class="btn btn-primary" href="/">Enroll</a>
 

@@ -5,10 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 const hbs = require('hbs');
-
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
-
 const User = require('./models/users');
 const flash = require('connect-flash');
 var session = require('express-session');
@@ -20,6 +18,7 @@ var detailsRouter = require('./routes/course-details');
 // var aboutRouter = require('./routes/about')
 // const editRouter = require('./routes/edit');
 // const cookieRouter = require('./routes/cookie');
+const deleteRouter = require('./routes/delete');
 var app = express(); 
 
 require('dotenv').config()
@@ -67,6 +66,7 @@ app.use('/', indexRouter); // Router for home page
 app.use('/create', createRouter);
 // app.use('/accessory/attach', attachAccessoryRouter);
 app.use('/course-details', detailsRouter);
+app.use('/delete', deleteRouter);
 // app.use('/about', aboutRouter);
 // app.use('/edit', editRouter);
 // app.use('/cookie', cookieRouter);
@@ -76,6 +76,13 @@ passport.use(new LocalStrategy(User.authenticate()));
 // use static serialize and deserialize of model for passport session support
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
+
+
+app.use((req, res, next) => {
+  req._requestStarted = new Date();
+  next();
+});
 
 // Routes
 app.use(function (req, res, next) {

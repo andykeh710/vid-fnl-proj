@@ -5,7 +5,7 @@ const Course = require('../models/course');
 const User = require('../models/users');
 /* GET Add Cube page. */
 router.get('/', function(req, res, next) {
-  console.log('add a course', {title: 'Create a Cube ', loggedUser: req.user})
+  console.log('add a course', {title: 'PLACEHOLDER ', loggedUser: req.user})
  // , {title: 'Create a Cube ', loggedUser: req.user}
  res.render('create');
 });
@@ -16,16 +16,18 @@ router.get('/', function(req, res, next) {
 // });
 
 router.post('/', function(req, res, next) {
-  console.log("FRROOOGGGSSS ------------------------------------------ ", req);
+  
+    let data = req.body;
+    console.log("FRROOOGGGSSS ------------------------------------------ ", data);
 
     const newCourse = new Course({
     // _id: Math.random(),
     title: req.body.title,
     description: req.body.description,
     imageUrl: req.body.imageUrl,
-    isPublic: false,
-    // createdAt: "4:20",
-    users: [],
+    isPublic: req.body.isPublic,
+    startTime: new Date(0),
+    users: ['1'],
     });
     
     newCourse.save()
