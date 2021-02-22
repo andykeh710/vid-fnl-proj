@@ -17,8 +17,8 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   
-    let data = req.body;
-    console.log("FRROOOGGGSSS ------------------------------------------ ", data);
+    // let data = req.body;
+    // console.log("FRROOOGGGSSS ------------------------------------------ ", data);
 
     const newCourse = new Course({
     // _id: Math.random(),
