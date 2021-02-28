@@ -2,7 +2,9 @@ var express = require('express');
 var router = express.Router();
 const Course = require('../models/course');
 // const Accessory = require('../models/accessory');
-const User = require('../models/users');
+const User = require('../models/user');
+const {handlebars} = require('hbs');
+const { body, validationResult } = require('express-validator');
 /* GET Add Cube page. */
 router.get('/', function(req, res, next) {
   console.log('add a course', {title: 'PLACEHOLDER ', loggedUser: req.user})
@@ -10,31 +12,42 @@ router.get('/', function(req, res, next) {
  res.render('create');
 });
 
-// router.get('/course', function(req, res, next){
-//     console.log("FROG TIME")
-//     res.render('create', {title: 'Create Course', loggedUser: req.user});
-// });
 
-router.post('/', function(req, res, next) {
-  
-    // let data = req.body;
-    // console.log("FRROOOGGGSSS ------------------------------------------ ", data);
+router.post('/', [
+    body('title')
+        .trim()
+        .isLength({min: 4})
+        .withMessage('Title Must exceed 4 Characters'),
+    body('description')
+        .trim()
+        .isLength({min: 20})
+        .withMessage('Description Must Be > 20 Characters'),
+    body('imageUrl')
+        .trim()
+        .isURL({ protocols: ['http', 'https'], require_protocol: true})
+        .withMessage('URL Must Start With HTTP or HTTPS'),
+], async (req, res, next) => {
+    let data = req.user;
 
+    console.log("FRROOOGGGSSS ------------------------------------------ ", data);
     const newCourse = new Course({
     // _id: Math.random(),
     title: req.body.title,
     description: req.body.description,
     imageUrl: req.body.imageUrl,
+    creator: req.user._id,
     isPublic: req.body.isPublic,
     startTime: new Date(0),
-    users: ['1'],
+
     });
     
     newCourse.save()
     res.redirect('/')
     .then((result) => {
         console.log(result)
+        
         res.send(result);
+        
         })
         .catch((err) => {
             res.send(err);

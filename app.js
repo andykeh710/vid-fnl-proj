@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 const hbs = require('hbs');
 const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
-const User = require('./models/users');
+const { body, validationResult } = require('express-validator');
+const User = require('./models/user');
 const flash = require('connect-flash');
 var session = require('express-session');
 // const searchRouter = require('./routes/search');
@@ -17,6 +18,7 @@ var createRouter = require('./routes/create');
 var detailsRouter = require('./routes/course-details');
 // var aboutRouter = require('./routes/about')
 // const editRouter = require('./routes/edit');
+var enrollRouter = require('./routes/enroll');
 // const cookieRouter = require('./routes/cookie');
 const deleteRouter = require('./routes/delete');
 var app = express(); 
@@ -67,6 +69,7 @@ app.use('/create', createRouter);
 // app.use('/accessory/attach', attachAccessoryRouter);
 app.use('/course-details', detailsRouter);
 app.use('/delete', deleteRouter);
+app.use('/enroll', enrollRouter);
 // app.use('/about', aboutRouter);
 // app.use('/edit', editRouter);
 // app.use('/cookie', cookieRouter);

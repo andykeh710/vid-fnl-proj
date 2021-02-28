@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 const passport = require('passport');
 const Course = require('../models/course');
-const User = require('../models/users');
+const User = require('../models/user');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -32,6 +32,8 @@ router.post('/login', passport.authenticate('local'), function(req, res) {  // ,
     //console.log('register page');
     res.render('register', { title: '--Register--' });
   });
+
+
 
 router.post('/register', function(req, res, next) {
     User.register(new User({username: req.body.username}), req.body.password, function(err) {

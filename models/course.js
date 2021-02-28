@@ -6,9 +6,17 @@ const courseSchema = new Schema({
   title: String,
   description: String,
   imageUrl: String,
+  creator: String,
   isPublic: false,
-  startTime: Date,
-  users:[]  //{ type: mongoose.Schema.Types.ObjectId, ref: 'Cube' }
+  startTime: String,
+  users: [{ type: Schema.Types.ObjectId, ref: 'User'}],
+  
+  // title: String,
+  // description: String,
+  // imageUrl: String,
+  // isPublic: false,
+  // startTime: Date,
+  // users:[]  //{ type: mongoose.Schema.Types.ObjectId, ref: 'Cube' }
 
 })
 

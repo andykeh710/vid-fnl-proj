@@ -1,3 +1,4 @@
+
 {{#if loggedUser}}
 <h1>Browser {{title}}</h1>
             <h1 class="text-center">Courses</h1>
@@ -12,9 +13,10 @@
                 
                 <div class="row ">
                     
-                    <div class="card-deck d-flex justify-content-center">
+                    
                         {{#each course}}
                         <div class="card mb-4">
+                            <div class="card-deck">
                             <img class="card-img-top"
                                 src="{{imageUrl}}"
                                 alt="Card image cap" width="400">
@@ -23,7 +25,7 @@
                             </div>
                             <div class="card-footer">
                                 <a href="/course-details/{{_id}}"><button type="button" class="btn btn-info" href="/course-details/{{_id}}">Details</button></a>
-                                <small class="float-right">{{startTime}}FROG</small>
+                                <small class="float-right">{{startTime}}</small>
                             </div>
                             
                         </div>  
@@ -47,15 +49,20 @@
                 <div class="container mt-3">
                     <div class="row d-flex justify-content-center">
                         
-                        <div class="card-deck">
+                        
                             {{#each course}}
                             <div class="card mb-4">
+                                <div class="card-deck">
                                 <img class="card-img-top"
                                     src="{{imageUrl}}"
                                     alt="Card image cap" width="400">
                                 <div class="card-body">
                                     <h4 class="card-title">{{title}}</h4>
                                 </div>
+                                                            <div class="card-footer">
+                                <a href="/course-details/{{_id}}"><button type="button" class="btn btn-info" href="/course-details/{{_id}}">Details</button></a>
+                                <small class="float-right">{{startTime}}</small>
+                            </div>
                             </div>
                     {{else}}                               
                 </div>

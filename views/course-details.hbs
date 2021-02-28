@@ -10,17 +10,32 @@
                             alt="Express" />
                     </div>
 
-                    <div class="col-md-4 text-center">
-                        <h3 class="my-3">{{course.title}}</h3>
-                        <p>{{course.description}}</p>
-                        <form action='/delete/{{course._id}}' method="POST">
-                        <a class="btn btn-danger" href="/" type="submit" value="Delete">Delete</a>
-                        </form>
-                        <a class="btn btn-warning" href="/">Edit</a>
 
-                        <span class="enrolled-span">You are already enrolled</span>
-                        <a class="btn btn-primary" href="/">Enroll</a>
+            <div class="col-md-4 text-center">
+                <h3 class="my-3">{{course.description}}</h3>
+                <p>{{course.createdAt}}</p>
+                {{#if isCreator}}
+                <form method="POST" action="/delete/{{course._id}}" enctype="application/x-www-form-urlencoded">
+                <input type="hidden" name="_method" value="DELETE">
+                <button type="submit">Delete Video</button>
+                </form>
+                <a class="btn btn-warning" href="/edit/{{course._id}}">Edit</a>
+                {{/if}}
 
-                    </div>
+                {{#if loggedUser}}
+                <span class="enrolled-span">You Are Enrolled</span>
+                <a class="btn btn-warning" href="/">Back</a>
+                {{else}}
+                <a class="enrolled-span" href="/enroll/{{course._id}}">Enroll Now</a>
+                <a class="btn btn-warning" href="/">Back</a>
+                {{/if}}              
+            </div>
+
+                <div class="col-md-4 text-center">
+                <h3 class="my-3">{{course.description}}</h3>
+                <p>{{course.createdAt}}</p>
+                <a class="btn btn-primary" href="/">Enroll</a>
+                </div>
+
                 </div>
 </div>
