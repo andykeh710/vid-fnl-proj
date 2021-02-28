@@ -1,0 +1,17 @@
+<div class="container">
+        <h1 class="my-4">Request To Enroll In: {{title}}</h1>
+        <div class="row">
+            <div class="col-md-8">
+                <img class="img-fluid"
+                    src="{{imageUrl}}"
+                    alt="Express" />
+            </div>
+            <div class="col-md-4 text-center">
+                <h3 class="my-3">{{course.description}}</h3>
+                <p>{{course.startTime}}</p>
+                <form method="POST" action="/enroll/{{course._id}}" enctype="application/x-www-form-urlencoded">
+                <input type="hidden" name="_method"><button class="enrolled-span" type="submit">Enroll Now</button>
+                </form>
+            </div>
+        </div>
+        </div>

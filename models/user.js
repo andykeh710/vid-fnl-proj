@@ -6,7 +6,7 @@ const usersSchema = new Schema({
     // id: mongoose.id, 
     username: String,
     password: String,
-    enrolled: []  //{ type: Schema.Types.ObjectId, ref: 'Cube'}
+    courses: [{ type: Schema.Types.ObjectId, ref: 'Course'}]  //{ type: Schema.Types.ObjectId, ref: 'Cube'}
 });
  
 usersSchema.plugin(passportLocalMongoose);
