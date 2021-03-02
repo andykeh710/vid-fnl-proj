@@ -11,7 +11,7 @@ const { body, validationResult } = require('express-validator');
 const User = require('./models/user');
 const flash = require('connect-flash');
 var session = require('express-session');
-// const searchRouter = require('./routes/search');
+const searchRouter = require('./routes/search');
 var indexRouter = require('./routes/user-home');
 var createRouter = require('./routes/create');
 // var attachAccessoryRouter = require('./routes/attach');
@@ -64,7 +64,7 @@ app.use(express.static(path.join(__dirname, 'static')));
 app.use(passport.session());
 app.use(flash());
 app.use('/', indexRouter); // Router for home page 
-// app.use('/search', searchRouter);
+app.use('/search', searchRouter);
 app.use('/create', createRouter);
 // app.use('/accessory/attach', attachAccessoryRouter);
 app.use('/course-details', detailsRouter);
