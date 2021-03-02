@@ -1,18 +1,28 @@
-
 {{#if loggedUser}}
 <h1>Browser {{title}}</h1>
             <h1 class="text-center">Courses</h1>
-
                 <a href="/create" class="btn btn-warning ">Create Course</a>
-                <form class="search float-right">
-                    <label>Search: </label>
-                    <input type="text">
-                    <input type="submit" class="btn btn-info" value="Search">
-                </form>
-            <div class="container mt-3">
+<section>
+    <form class="search float-right" action="/search/" method="GET">
+        <label>Search: </label>
+        <input type="text" class="search" name="search" placeholder="Search...">
+        <input type="submit" class="btn btn-info" value="Search">
+    </form>
+</section>
+            {{!-- <div class="container mt-3">
                 
-                <div class="row ">
-                    
+                <div class="row "> --}}
+                <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4">Video Tutorials</h1>
+                    <p class="lead">Start Self-Study Today: It'll Change Your Life</p>
+                </div>
+            </div>
+            <div>
+                <h1 class="text-center">Top Courses</h1>
+                <div class="container mt-3">
+                    <div class="row "></div>
+                    <div class="row d-flex justify-content-center">
                     
                         {{#each course}}
                         <div class="card mb-4">

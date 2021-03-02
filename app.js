@@ -17,7 +17,7 @@ var createRouter = require('./routes/create');
 // var attachAccessoryRouter = require('./routes/attach');
 var detailsRouter = require('./routes/course-details');
 // var aboutRouter = require('./routes/about')
-// const editRouter = require('./routes/edit');
+const editRouter = require('./routes/edit');
 var enrollRouter = require('./routes/enroll');
 // const cookieRouter = require('./routes/cookie');
 const deleteRouter = require('./routes/delete');
@@ -71,7 +71,7 @@ app.use('/course-details', detailsRouter);
 app.use('/delete', deleteRouter);
 app.use('/enroll', enrollRouter);
 // app.use('/about', aboutRouter);
-// app.use('/edit', editRouter);
+app.use('/edit', editRouter);
 // app.use('/cookie', cookieRouter);
 
 // use static authenticate method of model in LocalStrategy
