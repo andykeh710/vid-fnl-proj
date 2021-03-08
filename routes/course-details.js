@@ -9,7 +9,7 @@ router.get('/:uid', function(req, res, next) {
     // res.render('course-details')
     Course.findOne({_id: id}).populate('users')
     .then((thisCourse) => {
-        res.render('course-details', { title: 'frog time', course: thisCourse, isCreator: true, loggedInUser: req.user});  //accessories: thisCube.accessories, 
+        res.render('course-details', { title: 'frog time', course: thisCourse, isCreator: true, loggedUser: req.user});  //accessories: thisCube.accessories, 
     });
     
 });
