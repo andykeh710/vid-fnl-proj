@@ -7,7 +7,7 @@ router.get('/:id/', (req, res, next) => {
     // console.log('edit id is', id);
     Course.findOne({_id: id})
         .then((course) => {
-             res.render('edit', {course: course, user: req.user});
+             res.render('edit', {course: course, loggedUser: req.user});
     });    
 });
 

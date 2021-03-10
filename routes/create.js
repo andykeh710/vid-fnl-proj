@@ -9,7 +9,7 @@ const { body, validationResult } = require('express-validator');
 router.get('/', function(req, res, next) {
   console.log('add a course', {title: 'PLACEHOLDER ', loggedUser: req.user})
  // , {title: 'Create a Cube ', loggedUser: req.user}
- res.render('create');
+ res.render('create', {title: 'PLACEHOLDER ', loggedUser: req.user});
 });
 
 router.post('/', [
@@ -26,7 +26,7 @@ router.post('/', [
         // .isURL({ protocols: ['http', 'https'], require_protocol: true})
         // .withMessage('URL Must Start With HTTP or HTTPS'),
 ], async (req, res, next) => {
-    try {
+    try { 
         var displayErr;
         const errors = validationResult(req);
         console.log(errors);
@@ -38,36 +38,36 @@ router.post('/', [
             res.render('create-course', {errors: errors.array()});
             return;
         }
-        console.log('create video form fired');
-        // console.log(req.body);
+
+        console.log(req.body);
         let data = req.body;
-        let status = data.isPublic; //status = is video public or not via checkbox
+        let status = data.isPublic;
         // console.log(status);
         if(status == "on"){
-            let video = new Course({
+            let course = new Course({
                 title: data.title,
                 description: data.description,
                 imageUrl: data.imageUrl,
-                creator: "---------------------------------------",
+                creator: req.user._id,
                 isPublic: true,
                 startTime: new Date()
             });
-            console.log(video);
-            video.save()
+            console.log(course);
+            course.save()
             .then((response) => {
                 console.log(response);
                 res.redirect('/');
             });
         }else{
-            let video = new Course({
+            let course = new Course({
                 title: data.title,
                 description: data.description,
                 imageUrl: data.imageUrl,
-                creator: "---------------------------------------",
+                creator: req.user._id,
                 isPublic: false,
                 startTime: new Date()
             });
-            video.save()
+            course.save()
             .then((response) => {
                 console.log(response);
                 res.redirect('/');
@@ -102,13 +102,10 @@ router.post('/', [
             
 //         })
 // });
-
-
 // router.get('/accessory', function(req, res, next) {
 //  //console.log('Create accessory');
 //   res.render('createAccessory', { title: 'Add Accessory', loggedUser: req.user})
 // });
-
 // router.post('/course', function(req, res, next) {
 //   //console.log("the accessory form is ", req.body)
 //   const newCourse = new Course({
