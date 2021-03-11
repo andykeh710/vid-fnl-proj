@@ -8,16 +8,17 @@ const Course = require('../models/course');
 /* GET details listing. */
 router.get('/:uid', async function(req, res) {
     try{
-        console.log(" -----------------------------------------------------------------------------   ", req.user)
+        console.log(" -----------------------------------------------------------------------------   ", req)
         // if(err) throw (err);
         let id = req.params.id;
         let user = req.user._id.toString();
         let isCreator = false;
-        console.log("the user id is", user);
+        console.log("the user id is=======================================", user);
         //.populate('users')
 
         Course.findOne({_id: id}).populate('users')
             .then((course) => {
+               console.log(course)
             if(user === course.creator) {
                 isCreator = true;
             }
