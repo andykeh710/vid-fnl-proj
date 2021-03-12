@@ -8,6 +8,7 @@ const Course = require('../models/course');
 /* GET details listing. */
 router.get('/:uid', async function(req, res) {
     try{
+        console.log(req._id)
         console.log(" -----------------------------------------------------------------------------   ", req)
         // if(err) throw (err);
         let id = req.params.id;
@@ -18,9 +19,9 @@ router.get('/:uid', async function(req, res) {
 
         Course.findOne({_id: id}).populate('users')
             .then((course) => {
-               console.log(course)
+                console.log(course)
             if(user === course.creator) {
-                isCreator = true;
+                isCreator = true; 
             }
             console.log("The single video results from the details get route is ", course);
             //go get all the users held in mongodb
